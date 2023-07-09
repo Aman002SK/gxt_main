@@ -1,0 +1,2 @@
+# EduTrek-main
+ personal project
