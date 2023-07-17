@@ -1,0 +1,90 @@
+.servicesHeading {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.servicesHeading h2 {
+  font-size: 36px;
+  font-weight: bold;
+  background: linear-gradient(to bottom, #194c33, #bbb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.servicesHeading p {
+  margin-top: 0.5em;
+  font-size: 24px;
+  font-weight: 300;
+}
+
+/* ---- Testimonials ---- */
+
+.testimonialSection {
+  padding: 2rem 0;
+}
+
+.testimonialsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 3rem 0;
+}
+
+.testimonialTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.testimonialsGrid {
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  max-width: 1000px; */
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.testimonialCard {
+  flex: 1 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  /* background-color: #ffffff; */
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border: 2px solid white;
+  border-radius: 1em;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  /* color: #53c28b; */
+  text-align: center;
+}
+
+.role {
+  font-size: 1.25rem;
+  /* color: rgba(255, 255, 255, 0.7); */
+  margin-bottom: 10px;
+}
+
+.content {
+  font-size: 1rem;
+  /* color: rgba(255, 255, 255, 0.8); */
+  text-align: center;
+  line-height: 1.7rem;
+}

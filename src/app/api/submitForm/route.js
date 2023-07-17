@@ -26,3 +26,12 @@ export async function POST(request) {
     body: "Data received successfully",
   };
 }
+
+
+// const transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: "himanshusingladev@gmail.com",
+//     pass: "tushar143",
+//   },
+// });

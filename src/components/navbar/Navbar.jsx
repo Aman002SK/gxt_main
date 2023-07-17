@@ -37,11 +37,6 @@ const links = [
     title: "Dashboard",
     url: "/dashboard",
   },
-  {
-    id: 6,
-    title: "Service Form",
-    url: "/serviceForm",
-  },
 ];
 
 const Navbar = () => {
