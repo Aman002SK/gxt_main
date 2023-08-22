@@ -1,0 +1,42 @@
+.container {
+    max-width: 422px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media (max-width: 576px){
+        width: 350px;
+      }
+}
+.image {
+    width: 100%;
+    height: 100%;
+}
+
+.imageContainer {
+    width: 422px;
+    height: 493px;
+    flex-shrink: 0;
+    @media (max-width: 576px){
+        width: 350px;
+        height: 423px;
+      }
+}
+.content {
+    position: inherit;
+    text-align: center;
+    bottom: 80px;
+    background: var(--themeBlack);
+    padding: 10% 0;
+    width: 60%;
+    align-self: center;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.borderTop {
+    height: 12px;
+    width: 100%;
+    background-color: var(--themeGreen);
+    display: block;
+    position: absolute;
+    top: 0;
+}

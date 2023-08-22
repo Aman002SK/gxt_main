@@ -6,6 +6,7 @@ export async function POST(request) {
   const email = data.email;
   const subject = data.subject;
   const message = data.message;
+  const file = data.file;
 
   const transporter = nodemailer.createTransport({
     host: "smtp.freesmtpservers.com",
@@ -26,7 +27,6 @@ export async function POST(request) {
     body: "Data received successfully",
   };
 }
-
 
 // const transporter = nodemailer.createTransport({
 //   service: "gmail",

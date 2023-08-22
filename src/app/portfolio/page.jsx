@@ -4,16 +4,16 @@ import Link from "next/link";
 
 const Portfolio = () => {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} mb-[5%]`}>
       <h1 className={styles.selectTitle}>Choose a gallery</h1>
       <div className={styles.items}>
         <Link href="/portfolio/illustrations" className={styles.item}>
           <span className={styles.title}>Academic Services</span>
         </Link>
         <Link href="/portfolio/websites" className={styles.item}>
-          <span className={styles.title}>Corporate Services</span>
+          <span className={styles.title}>Digital Solutions</span>
         </Link>
-        <Link href="/portfolio/application" className={styles.item}>
+        <Link href="/portfolio/applications" className={styles.item}>
           <span className={styles.title}>Web and App Services</span>
         </Link>
       </div>

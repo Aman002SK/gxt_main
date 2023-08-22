@@ -1,43 +1,41 @@
 import React from "react";
 import styles from "./page.module.css";
-import Link from "next/link";
-import Image from "next/image";
+import BlogCard from "./Card/Card";
 
-async function getData(id) {
-  const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
-    cache: "no-store",
-  });
+async function getData() {
+  try {
+    const res = await fetch(`http://localhost:3000/api/posts`, {
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
-    console.log("added by himanshu temporary")
-    // throw new Error("Failed to fetch data");
-
+    if (!res.ok) {
+    }
+    const reponse = await res.json();
+    return reponse.blogs;
+  } catch (error) {
+    console.log("err", error);
   }
-  console.log(res)
-  return res.json();
 }
 
-const Blog = async ({params}) => {
-  const data = await getData(params.id);
+const Blog = async () => {
+  const data = await getData();
   return (
     <div className={styles.mainContainer}>
-      {data.map((item) => (
-        <Link href={`/blog/${item._id}`} className={styles.container} key={item.id}>
-          <div className={styles.imageContainer}>
-            <Image
-              src={item.img}
-              alt=""
-              width={400}
-              height={250}
-              className={styles.image}
-            />
-          </div>
-          <div className={styles.content}>
-            <h1 className={styles.title}>{item.title}</h1>
-            <p className={styles.desc}>{item.desc}</p>
-          </div>
-        </Link>
-      ))}
+      <div className={styles.cardContainer}>
+        {data.map((item) => {
+          return (
+            <>
+              <BlogCard
+                slug={item.slug}
+                image={item.img}
+                title={item.title}
+                desc={item.desc}
+                key={item.slug}
+              />
+            </>
+          );
+        })}
+      </div>
     </div>
   );
 };

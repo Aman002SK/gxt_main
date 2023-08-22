@@ -8,9 +8,10 @@ export const GET = async (request, { params }) => {
   try {
     await connect();
 
-    const post = await Post.findById(id);
-
-    return new NextResponse(JSON.stringify(post), { status: 200 });
+    const post = await Post.findOne({ slug: id });
+    // const imageBuffer = Buffer.from(post.img);
+    // post.img = imageBuffer;
+    return NextResponse.json({ status: 200, data: post });
   } catch (err) {
     return new NextResponse("Database Error", { status: 500 });
   }

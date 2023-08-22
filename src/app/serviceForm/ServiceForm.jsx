@@ -2,12 +2,10 @@
 import axios from "axios";
 import { useState } from "react";
 import styles from "./page.module.css";
-import Image from "next/image";
-import Button from "@/components/Button/Button";
 
-export default function FormPage() {
+export default function ServiceForm() {
   const [formData, setFormData] = useState({
-    name: "",
+    userName: "",
     email: "",
     subject: "",
     message: "",
@@ -16,22 +14,27 @@ export default function FormPage() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    // console.log(name, value);
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    // console.log("file", file);
     setFormData((prevData) => ({ ...prevData, file }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/submitForm", {
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
+      const form = new FormData();
+      form.append("name", formData.userName);
+      form.append("email", formData.email);
+      form.append("subject", formData.subject);
+      form.append("message", formData.message);
+      form.append("file", formData.file, "hi.pptx");
+      await axios.post("/api/submitForm", form, {
+        headers: { "content-type": "multipart/form-data" },
       });
       console.log("data sent successfully");
       setFormData({
@@ -46,23 +49,23 @@ export default function FormPage() {
   };
 
   return (
-    <div className={styles.container}>
-      <p>Your content will start here...</p>
-      <h1 className={styles.title}>Service Form</h1>
-      <form className={styles.form}>
+    <div className="container">
+      <div className={`${styles.container} mb-[5%]`}>
+        <h1 className={styles.title}>Get your work started</h1>
+
         <div className={styles.content}>
           <form className={styles.form}>
             <input
               type="text"
-              placeholder="name"
+              placeholder="Name"
               className={styles.input}
-              name="name"
+              name="userName"
               value={formData.name}
               onChange={handleChange}
             />
             <input
               type="text"
-              placeholder="email"
+              placeholder="Email"
               className={styles.input}
               name="email"
               value={formData.email}
@@ -76,6 +79,12 @@ export default function FormPage() {
             >
               <option value="" className={styles.option} disabled>
                 Select service
+              </option>
+              <option value="Web Development" className={styles.option}>
+              Web Development
+              </option>
+              <option value="Inbound Services" className={styles.option}>
+              Data Entry/Inbound Services
               </option>
               <option value="Manuscript Preparation" className={styles.option}>
                 Manuscript Preparation
@@ -98,7 +107,7 @@ export default function FormPage() {
             </select>
             <input
               type="text"
-              placeholder="subject"
+              placeholder="Subject"
               className={styles.input}
               name="subject"
               value={formData.subject}
@@ -106,7 +115,7 @@ export default function FormPage() {
             />
             <textarea
               className={styles.textArea}
-              placeholder="message"
+              placeholder="Message"
               cols="30"
               rows="10"
               name="message"
@@ -131,8 +140,9 @@ export default function FormPage() {
             </button>
           </form>
         </div>
-      </form>
+      </div>
     </div>
+
   );
 }
 

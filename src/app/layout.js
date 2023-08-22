@@ -8,7 +8,7 @@ import AuthProvider from "@/components/AuthProvider/AuthProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "EduTrek International Private Limited",
+  title: "gxt solutions private limited",
   description: "This is the description",
 };
 
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <ThemeProvider>
           <AuthProvider>
-            <div className="container">
+            <div>
               <Navbar />
               {children}
               <Footer />

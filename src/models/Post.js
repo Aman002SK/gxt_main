@@ -13,7 +13,7 @@ const postSchema = new Schema(
       required: true,
     },
     img: {
-      type: String,
+      type: Buffer,
       required: true,
     },
     content: {
@@ -21,6 +21,10 @@ const postSchema = new Schema(
       required: true,
     },
     username: {
+      type: String,
+      required: true,
+    },
+    slug: {
       type: String,
       required: true,
     },

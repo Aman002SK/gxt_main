@@ -1,22 +1,11 @@
-.container {
+.mainContainer {
   display: flex;
-  align-items: center;
-  gap: 50px;
-  margin-bottom: 50px;
+  justify-content: center;
 }
 
-.image{
-  object-fit: cover;
-}
-
-.content {
-}
-
-.title{
-  margin-bottom: 10px;
-}
-
-.desc{
-  font-size: 18px;
-  color: #999;
+.cardContainer {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  max-width: 1204px;
 }

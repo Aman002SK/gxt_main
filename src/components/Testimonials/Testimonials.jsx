@@ -1,74 +1,113 @@
-import React from "react";
+"use client";
+import React, { useContext } from "react";
 import styles from "./Testimonials.module.css";
-import Hero from "../../../public/hero.png"
+import { Swiper, SwiperSlide } from "swiper/react";
+import { ThemeContext } from "@/context/ThemeContext";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import { Pagination, Navigation } from "swiper/modules";
+import SectionHeading from "../shared/SectionHeading/SectionHeading";
 
 const testimonials = [
   {
     id: 1,
-    name: "fhdbhfg th hrt rtujhrt rturt  erhe ",
-    role: "Web Developer",
-    avatar: "https://media.licdn.com/dms/image/C4D03AQGw7ojbxWiJnA/profile-displayphoto-shrink_800_800/0/1657742907920?e=2147483647&v=beta&t=RnS6_i9TIs647Smegh77hCdypD98_DpQsfCCIKT4lKs",
+    name: "Venkatesh",
+    role: "Student",
+    avatar:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at mollis nunc, id fermentum nisi. Donec efficitur quam sed ipsum vestibulum, vel molestie velit pharetra.",
+      "I am incredibly impressed by GXT's ability to deliver exceptional writing services within an extremely short timeframe. They not only met but exceeded my expectations by completing the writing task well before the deadline.",
   },
   {
     id: 2,
-    name: "Jane Smith",
-    role: "UX Designer",
-    avatar: "https://media.licdn.com/dms/image/C4D03AQGw7ojbxWiJnA/profile-displayphoto-shrink_800_800/0/1657742907920?e=2147483647&v=beta&t=RnS6_i9TIs647Smegh77hCdypD98_DpQsfCCIKT4lKs",
+    name: "Sai Sandeep",
+    role: "Senior Research Analyst @IBC Consultants",
+    avatar:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
     content:
-      "Nulla facilisi. In hendrerit elit vel dapibus consequat. Fusce ac erat vitae ex semper finibus at sit amet tortor.",
+      "I'm truly impressed with the professionalism and technical proficiency of GXT SOLUTIONS. This automation has not only increased my productivity but also allowed me to focus on more strategic aspects of my work.",
   },
   {
-    id: 2,
-    name: "Jane Smith",
-    role: "UX Designer",
-    avatar: "https://media.licdn.com/dms/image/C4D03AQGw7ojbxWiJnA/profile-displayphoto-shrink_800_800/0/1657742907920?e=2147483647&v=beta&t=RnS6_i9TIs647Smegh77hCdypD98_DpQsfCCIKT4lKs",
+    id: 3,
+    name: "Mahesh",
+    role: "Student",
+    avatar:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
     content:
-      "Nulla facilisi. In hendrerit elit vel dapibus consequat. Fusce ac erat vitae ex semper finibus at sit amet tortor.",
+      "The team at GXT SOLUTIONS not only provided thorough editing that enhanced the clarity and coherence of my writing but also employed advanced plagiarism detection tools to ensure the originality of my content. The result was a polished and refined thesis that adhered to the highest standards of academic integrity.",
   },
   {
-    id: 2,
-    name: "Jane Smith",
-    role: "UX Designer",
-    avatar: "https://media.licdn.com/dms/image/C4D03AQGw7ojbxWiJnA/profile-displayphoto-shrink_800_800/0/1657742907920?e=2147483647&v=beta&t=RnS6_i9TIs647Smegh77hCdypD98_DpQsfCCIKT4lKs",
+    id: 4,
+    name: "Venkatesh",
+    role: "Student",
+    avatar:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
     content:
-      "Nulla facilisi. In hendrerit elit vel dapibus consequat. Fusce ac erat vitae ex semper finibus at sit amet tortor.",
+      "Working with GXT SOLUTIONS has been a seamless and positive experience. Their commitment to excellence and their ability to produce top-tier content in such a short period is a testament to their expertise and professionalism. I am grateful for their outstanding service and look forward to collaborating with them again in the future",
   },
-  {
-    id: 2,
-    name: "Jane Smith",
-    role: "UX Designer",
-    avatar: "https://media.licdn.com/dms/image/C4D03AQGw7ojbxWiJnA/profile-displayphoto-shrink_800_800/0/1657742907920?e=2147483647&v=beta&t=RnS6_i9TIs647Smegh77hCdypD98_DpQsfCCIKT4lKs",
-    content:
-      "Nulla facilisi. In hendrerit elit vel dapibus consequat. Fusce ac erat vitae ex semper finibus at sit amet tortor.",
-  }
   
+
   // Add more testimonials as needed
 ];
 
 const Testimonials = () => {
+  const { mode } = useContext(ThemeContext);
   return (
     <section className={styles.testimonialSection}>
-      <div className={styles.servicesHeading}>
-        <h2>Tesimonials</h2>
-        <p>What Our Clients Say</p>
-      </div>
+      <SectionHeading title={`Tesimonials`} subTitle={`What Our Clients Say`} />
       <div className={styles.testimonialsContainer}>
-        <div className={styles.testimonialsGrid}>
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={100}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 175,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 200,
+            },
+            992: {
+              slidesPerView: 3,
+              spaceBetween: 250,
+            },
+            1200: {
+              slidesPerView: 3,
+              spaceBetween: 370,
+            },
+          }}
+          loop={true}
+          centeredSlides={true}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className={`mySwiper`}
+        >
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className={styles.testimonialCard}>
-              <img
-                src={testimonial.avatar}
-                alt="Avatar"
-                className={styles.avatar}
-              />
-              <h3 className={styles.name}>{testimonial.name}</h3>
-              <p className={styles.role}>{testimonial.role}</p>
-              <p className={styles.content}>{testimonial.content}</p>
-            </div>
+            <SwiperSlide>
+              <div
+                key={testimonial.id}
+                className={styles.testimonialCard}
+                style={
+                  mode === "dark" ? { backgroundColor: `#161616` } : undefined
+                }
+              >
+                <img
+                  src={testimonial.avatar}
+                  alt="Avatar"
+                  className={styles.avatar}
+                />
+                <p className={styles.content}>{testimonial.content}</p>
+                <h3
+                  className={styles.name}
+                >{`- ${testimonial.name}, ${testimonial.role}`}</h3>
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </section>
   );
