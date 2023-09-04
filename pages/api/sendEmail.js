@@ -22,11 +22,11 @@ export default async function handler(req, res) {
       // Send the email
       await transporter.sendMail({
         from: {
-          name: "SageMind Studio", // Replace with the sender's name
-          address: "hello@sagemind.studio",
+          name: "GXT Solutions", // Replace with the sender's name
+          address: "aman@gxtsolutions.com",
         },
-        to: "patilvinit83@gmail.com",
-        subject: "Test",
+        to: "aman@gxtsolutions.com",
+        subject: "Lead - Contact Form",
         text: `
         Name: ${name}
         Email: ${email}
