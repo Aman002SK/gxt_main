@@ -13,8 +13,8 @@ export default async function handler(req, res) {
       port: 587,
       secure: false,
       auth: {
-        user: "apikey",
-        pass: "",
+        user: process.env.USER,
+        pass: process.env.APIKEY,
       },
     });
 
