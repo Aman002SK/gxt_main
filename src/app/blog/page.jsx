@@ -22,7 +22,7 @@ const Blog = async () => {
   return (
     <div className={styles.mainContainer}>
       <div className={styles.cardContainer}>
-        {data.map((item) => {
+        {data.map((item,i) => {
           return (
             <>
               <BlogCard
@@ -30,7 +30,7 @@ const Blog = async () => {
                 image={item.img}
                 title={item.title}
                 desc={item.desc}
-                key={item.slug}
+                key={i}
               />
             </>
           );

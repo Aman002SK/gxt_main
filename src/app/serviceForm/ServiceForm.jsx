@@ -2,50 +2,50 @@
 import axios from "axios";
 import { useState } from "react";
 import styles from "./page.module.css";
+import { Oval } from "react-loader-spinner";
 
 export default function ServiceForm() {
-  const [formData, setFormData] = useState({
-    userName: "",
-    email: "",
-    subject: "",
-    message: "",
-    dropdownValue: "", // Add a new state for the dropdown value
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [service, setService] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    // console.log(name, value);
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    // console.log("file", file);
-    setFormData((prevData) => ({ ...prevData, file }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
     try {
-      const form = new FormData();
-      form.append("name", formData.userName);
-      form.append("email", formData.email);
-      form.append("subject", formData.subject);
-      form.append("message", formData.message);
-      form.append("file", formData.file, "hi.pptx");
-      await axios.post("/api/submitForm", form, {
-        headers: { "content-type": "multipart/form-data" },
+      const response = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, service, subject, message }),
       });
-      console.log("data sent successfully");
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setName("");
+        setEmail("");
+        setService("");
+        setSubject("");
+        setMessage("");
+        // Reset isSubmitted to false after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error("Failed to send email.");
+      }
     } catch (error) {
       console.error(error);
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -60,31 +60,31 @@ export default function ServiceForm() {
               placeholder="Name"
               className={styles.input}
               name="userName"
-              value={formData.name}
-              onChange={handleChange}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <input
               type="text"
               placeholder="Email"
               className={styles.input}
               name="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <select
               className={styles.input}
               name="dropdownValue"
-              value={formData.dropdownValue}
-              onChange={handleChange}
+              value={service}
+              onChange={(e) => setService(e.target.value)}
             >
               <option value="" className={styles.option} disabled>
                 Select service
               </option>
               <option value="Web Development" className={styles.option}>
-              Web Development
+                Web Development
               </option>
               <option value="Inbound Services" className={styles.option}>
-              Data Entry/Inbound Services
+                Data Entry/Inbound Services
               </option>
               <option value="Manuscript Preparation" className={styles.option}>
                 Manuscript Preparation
@@ -110,8 +110,8 @@ export default function ServiceForm() {
               placeholder="Subject"
               className={styles.input}
               name="subject"
-              value={formData.subject}
-              onChange={handleChange}
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
             />
             <textarea
               className={styles.textArea}
@@ -119,10 +119,10 @@ export default function ServiceForm() {
               cols="30"
               rows="10"
               name="message"
-              value={formData.message}
-              onChange={handleChange}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             ></textarea>
-            <div className={styles.formGroup}>
+            {/* <div className={styles.formGroup}>
               <label htmlFor="file">Upload File </label>
               <input
                 type="file"
@@ -130,16 +130,40 @@ export default function ServiceForm() {
                 name="file"
                 onChange={handleFileChange}
               />
-            </div>
-            <button
-              type="submit"
-              className={styles.submitBtn}
-              onClick={handleSubmit}
-            >
-              Submit
-            </button>
+            </div> */}
+            {isLoading ? (
+              <div className="w-[fit-content]">
+                <Oval
+                  height={40}
+                  width={40}
+                  color="#53c28b"
+                  wrapperStyle={{}}
+                  wrapperclassName=""
+                  visible={true}
+                  ariaLabel="oval-loading"
+                  secondaryColor="white"
+                  strokeWidth={2}
+                  strokeWidthSecondary={2}
+                />
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className={styles.submitBtn}
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            )}
+
           </form>
         </div>
+        {isSubmitted && (
+          <p className="text-white bg-[#53c28b] py-[10px] px-[20px] rounded my-[20px] text-sm md:text-base">
+            We appreciate you contacting us. One of our colleagues will
+            get back in touch with you soon! Have a great day!
+          </p>
+        )}
       </div>
     </div>
 

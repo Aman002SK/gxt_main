@@ -3,9 +3,9 @@ const nextConfig = {
   images: {
     domains: ["images.pexels.com"],
   },
-  experimental: {
-    serverActions: true,
-  },
+  // experimental: {
+  //   serverActions: true,
+  // },
 };
 
 module.exports = nextConfig;

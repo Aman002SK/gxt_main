@@ -13,7 +13,7 @@ const Contact = () => {
     <div className={styles.container}>
       {/* <h1 className={styles.title}>Let's Keep in Touch</h1> */}
       <div className={styles.servicesHeading}>
-        <h2>Let's Keep in Touch</h2>
+        <h2>Lets Keep in Touch</h2>
         <p>Building Relationships Beyond Boundaries</p>
       </div>
       <div className={styles.content}>

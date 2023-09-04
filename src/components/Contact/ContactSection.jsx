@@ -7,8 +7,8 @@ const ContactSection = () => {
                 <h2 className={styles.title}>
                     Contact Us
                 </h2>
-                <p className={styles.desc}>Get in Touch with GXT SOLUTIONS – Let's Create Something Extraordinary Together!  </p>
-                <Link href="/contact" className={styles.button}>Let's Connect</Link>
+                <p className={styles.desc}>Get in Touch with GXT SOLUTIONS – Lets Create Something Extraordinary Together!  </p>
+                <Link href="/contact" className={styles.button}>Lets Connect</Link>
             </div>
 
             <div className={styles.backgroundDivStyle}></div>

@@ -86,8 +86,8 @@ const Testimonials = () => {
           modules={[Pagination, Navigation]}
           className={`mySwiper`}
         >
-          {testimonials.map((testimonial) => (
-            <SwiperSlide>
+          {testimonials.map((testimonial,i) => (
+            <SwiperSlide key={i}>
               <div
                 key={testimonial.id}
                 className={styles.testimonialCard}
