@@ -17,14 +17,14 @@ const links = [
   },
   {
     id: 2,
-    title: "services",
+    title: "Services",
     url: "/portfolio",
   },
-  {
-    id: 3,
-    title: "Blog",
-    url: "/blog",
-  },
+  // {
+  //   id: 3,
+  //   title: "Blog",
+  //   url: "/blog",
+  // },
   {
     id: 4,
     title: "About",
